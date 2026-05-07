@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café La Falaise — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#2d6a2d;--green-dark:#1a4a1a;--green-pale:#e8f3e8;
+  --cream:#faf8f3;--warm-white:#fff9f0;--gold:#c8a84b;
+  --text-dark:#1c1c1c;--text-mid:#4a4a4a;--text-light:#888;--border:#e8e2d8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--green-dark);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:.15em;color:#fff;text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold)!important;color:#fff!important;padding:.45rem 1.1rem;border-radius:3px}
+
+.hero{margin-top:64px;min-height:91vh;background:linear-gradient(140deg,var(--green-dark) 0%,var(--green) 55%,#3a7a3a 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;padding:4rem 2rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 55%,rgba(255,255,255,.04) 0%,transparent 50%),radial-gradient(circle at 82% 18%,rgba(200,168,75,.13) 0%,transparent 42%)}
+.hero-badge{display:inline-block;border:1px solid rgba(200,168,75,.6);color:var(--gold);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;padding:.4rem 1.2rem;border-radius:2px;margin-bottom:1.5rem;animation:fadeUp .8s ease both}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6.5rem);color:#fff;line-height:1.05;font-weight:700;animation:fadeUp .9s .1s ease both}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-sub{margin-top:1.5rem;color:rgba(255,255,255,.7);font-size:1rem;letter-spacing:.05em;font-weight:300;animation:fadeUp 1s .2s ease both}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:3.5rem;animation:fadeUp 1s .3s ease both}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:700}
+.stat-label{font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.15em;text-transform:uppercase;margin-top:.25rem}
+.stat-div{width:1px;background:rgba(255,255,255,.15);height:48px;align-self:center}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.4);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.6rem;animation:fadeUp 1s .5s ease both}
+.scroll-line{width:1px;height:40px;background:rgba(255,255,255,.25);animation:scrollPulse 2s ease-in-out infinite}
+
+.section-tag{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:.75rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15}
+.section-title em{color:var(--green);font-style:italic}
+.title-line{width:48px;height:3px;background:var(--gold);margin-top:1.25rem;border-radius:2px}
+
+.about-section{padding:6rem 2rem;background:var(--cream)}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-text p{margin-top:1.5rem;color:var(--text-mid);font-size:1rem;line-height:1.85;font-weight:300}
+.about-features{margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem}
+.feature-row{display:flex;align-items:center;gap:1rem;padding:.85rem 1.25rem;background:var(--warm-white);border-left:3px solid var(--green);border-radius:0 6px 6px 0}
+.feature-icon{width:36px;height:36px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.feature-text strong{display:block;font-size:.85rem;font-weight:600}
+.feature-text span{font-size:.78rem;color:var(--text-light)}
+.about-visual{position:relative}
+.about-img-frame{width:100%;aspect-ratio:4/5;background:var(--green-dark);border-radius:12px;overflow:hidden}
+.about-img-frame img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.about-card{position:absolute;bottom:-1.5rem;left:-1.5rem;background:#fff;border-radius:10px;padding:1.25rem 1.5rem;box-shadow:0 12px 40px rgba(0,0,0,.12);min-width:180px}
+.about-card-num{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--green);font-weight:700;line-height:1}
+.about-card-label{font-size:.75rem;color:var(--text-light);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem}
+
+.showcase-section{padding:6rem 2rem;background:var(--warm-white)}
+.showcase-inner{max-width:1200px;margin:0 auto}
+.showcase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.sc-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
+.sc-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.sc-img{width:100%;height:200px;overflow:hidden;position:relative}
+.sc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.sc-card:hover .sc-img img{transform:scale(1.07)}
+.sc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,74,26,.5),transparent 60%);opacity:0;transition:opacity .3s}
+.sc-card:hover .sc-overlay{opacity:1}
+.sc-tag{position:absolute;top:1rem;left:1rem;background:var(--green);color:#fff;font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2px}
+.sc-body{padding:1.4rem}
+.sc-body h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700}
+.sc-body p{margin-top:.45rem;font-size:.82rem;color:var(--text-light);line-height:1.6}
+.sc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid #f0ede6}
+.sc-badge{font-size:.7rem;color:var(--green);font-weight:600}
+.sc-btn{background:var(--green);color:#fff;border:none;padding:.45rem .9rem;border-radius:4px;font-size:.72rem;font-family:'Jost',sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.sc-btn:hover{background:var(--green-dark)}
+
+.menu-page{background:var(--cream);padding:5rem 2rem}
+.menu-page-inner{max-width:1200px;margin:0 auto}
+.menu-page-header{text-align:center;margin-bottom:3.5rem}
+.menu-page-header .title-line{margin:1.25rem auto 0}
+
+.menu-tabs{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:3rem}
+.tab-btn{background:#fff;border:1.5px solid var(--border);border-radius:50px;padding:.45rem 1.1rem;font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:var(--text-mid);transition:all .2s}
+.tab-btn:hover{border-color:var(--green);color:var(--green)}
+.tab-btn.active{background:var(--green);border-color:var(--green);color:#fff}
+
+.menu-panel{display:none}
+.menu-panel.active{display:block}
+
+.menu-cat{margin-bottom:2.5rem}
+.menu-cat-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--green-dark);font-weight:700;padding-bottom:.7rem;border-bottom:2px solid var(--gold);margin-bottom:1.25rem;display:flex;align-items:center;gap:.7rem}
+.menu-cat-sub{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);margin:1.25rem 0 .7rem;padding-left:.5rem;border-left:3px solid var(--green-pale)}
+
+.menu-items{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.menu-items.single-col{grid-template-columns:1fr}
+.menu-item{background:#fff;border-radius:10px;padding:.9rem 1.15rem;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;transition:box-shadow .2s,transform .2s}
+.menu-item:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
+.menu-item-left{flex:1;min-width:0}
+.menu-item-name{font-size:.92rem;font-weight:600;color:var(--text-dark);text-transform:capitalize}
+.menu-item-desc{font-size:.76rem;color:var(--text-light);margin-top:.25rem;line-height:1.5}
+.menu-item-price{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--green);white-space:nowrap;flex-shrink:0;background:var(--green-pale);padding:.2rem .6rem;border-radius:20px}
+
+.formula-card{background:#fff;border-radius:14px;border:1.5px solid var(--gold);padding:1.5rem 1.75rem;margin-bottom:1rem}
+.formula-card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.65rem}
+.formula-card-name{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--green-dark)}
+.formula-card-price{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.formula-card-desc{font-size:.82rem;color:var(--text-mid);line-height:1.7}
+
+.video-section{background:var(--green-dark);padding:5rem 2rem;text-align:center}
+.video-section .section-tag{color:var(--gold)}
+.video-section .section-title{color:#fff}
+.video-section .title-line{margin:1.25rem auto 0}
+.video-wrapper{max-width:860px;margin:3rem auto 0;border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.4);aspect-ratio:16/9;background:#000}
+.video-wrapper iframe{width:100%;height:100%;display:block;border:none}
+
+.social-bar{background:var(--warm-white);padding:2.5rem 2rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.social-chip{display:flex;align-items:center;gap:.6rem;background:#fff;border:1.5px solid #e0dbd0;border-radius:50px;padding:.55rem 1.25rem;font-size:.82rem;font-weight:500;color:var(--text-mid);text-decoration:none;transition:border-color .2s,color .2s}
+.social-chip:hover{border-color:var(--green);color:var(--green)}
+.social-chip svg{width:16px;height:16px}
+
+footer{background:var(--green-dark);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;letter-spacing:.15em;font-weight:700}
+.footer-sub{font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.15em;text-transform:uppercase;margin-top:.35rem}
+.footer-line{width:40px;height:2px;background:var(--gold);margin:1.5rem auto}
+footer p{font-size:.78rem;color:rgba(255,255,255,.35)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:.4}50%{transform:scaleY(1.4);opacity:.8}}
+
+@media(max-width:900px){.menu-items{grid-template-columns:1fr}.showcase-grid{grid-template-columns:1fr 1fr}.about-inner{grid-template-columns:1fr;gap:3rem}.about-visual{display:none}.nav-links{display:none}.hero-stats{gap:1.5rem}}
+@media(max-width:580px){.showcase-grid{grid-template-columns:1fr}.tab-btn{font-size:.68rem;padding:.4rem .85rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">LA FALAISE</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#categories">Carte</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#video">Vidéo</a></li>
+    <li><a href="#menu" class="nav-cta">Voir le menu</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge">Café · Restaurant · Chichas</div>
+    <h1>Café<br><em>La Falaise</em></h1>
+    <p class="hero-sub">Une expérience culinaire authentique — Monastir, Tunisie</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">40K</div><div class="stat-label">Abonnés</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Catégories</div></div>
+      <div class="stat-div"></div>
+      <div class="stat"><div class="stat-num">★ 4.8</div><div class="stat-label">Note</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Défiler</span></div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="section-tag">Notre histoire</div>
+      <h2 class="section-title">Un lieu de vie,<br><em>de saveurs</em></h2>
+      <div class="title-line"></div>
+      <p>Café La Falaise est bien plus qu'un simple café. C'est un espace où les traditions culinaires tunisiennes rencontrent des influences méditerranéennes pour créer une expérience gastronomique unique.</p>
+      <p>De nos brunchs savoureux à nos chichas parfumées, chaque détail est pensé pour vous offrir un moment de plaisir et de convivialité.</p>
+      <div class="about-features">
+        <div class="feature-row"><div class="feature-icon">🍳</div><div class="feature-text"><strong>Petit déjeuner & Brunch</strong><span>Formules complètes tous les matins</span></div></div>
+        <div class="feature-row"><div class="feature-icon">🍕</div><div class="feature-text"><strong>Pizzas, Pasta & Plats</strong><span>Cuisine chaude midi et soir</span></div></div>
+        <div class="feature-row"><div class="feature-icon">💨</div><div class="feature-text"><strong>Boissons Froides & Chichas</strong><span>Ambiance lounge le soir</span></div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-img-frame"><img src="https://instagram.ftun20-1.fna.fbcdn.net/v/t51.75761-15/511568843_18275496082274543_7972187804791701885_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzY2NjYwMjkyNjg1NTYyMTI0Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTQ0MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=m2v_RhWj5aYQ7kNvwHip2Tt&_nc_oc=Adq20hH0TBQv_qbFP7ZNHujJW1zWXqqixGKTXi_lGfkFWqF5q2jRhZrEFYjQy_rl7q8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.ftun20-1.fna&_nc_gid=vbPU7msFlOtvzpvaa97NaA&_nc_ss=7a22e&oh=00_Af7LxEqbP9wpB6BdzoiNg7Tn6xmRpJ8UbbXnmBCMRxgWsg&oe=6A01A73A" alt="Café intérieur"/></div>
+      <div class="about-card"><div class="about-card-num">+5</div><div class="about-card-label">Ans d'excellence</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" class="showcase-section">
+  <div class="showcase-inner">
+    <div style="text-align:center">
+      <div class="section-tag">Nos spécialités</div>
+      <h2 class="section-title">Explorez <em>nos saveurs</em></h2>
+      <div class="title-line" style="margin:1.25rem auto 0"></div>
+    </div>
+    <div class="showcase-grid">
+      <div class="sc-card"><div class="sc-img"><img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80" alt="Brunch"/><div class="sc-overlay"></div><div class="sc-tag">Matin</div></div><div class="sc-body"><h3>Petit Déjeuner & Brunch</h3><p>Formules Bambino, Vite Fait, Cœur Doux, Falaise Park & Brunch complet</p><div class="sc-foot"><span class="sc-badge">LA FALAISE</span><button class="sc-btn" onclick="openTab('brunch')">Voir le menu</button></div></div></div>
+      <div class="sc-card"><div class="sc-img"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Pizza"/><div class="sc-overlay"></div><div class="sc-tag">Midi & Soir</div></div><div class="sc-body"><h3>Pizzas, Tacos & Burgers</h3><p>10 pizzas artisanales, tacos variés, hamburgers & Box</p><div class="sc-foot"><span class="sc-badge">LA FALAISE</span><button class="sc-btn" onclick="openTab('pizzas')">Voir le menu</button></div></div></div>
+      <div class="sc-card"><div class="sc-img"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80" alt="Pasta"/><div class="sc-overlay"></div><div class="sc-tag">Plats</div></div><div class="sc-body"><h3>Pasta, Salades & Omelettes</h3><p>Spaghetti, tagliatelle, penne — 11 sauces créatives</p><div class="sc-foot"><span class="sc-badge">LA FALAISE</span><button class="sc-btn" onclick="openTab('plats')">Voir le menu</button></div></div></div>
+      <div class="sc-card"><div class="sc-img"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Crêpes"/><div class="sc-overlay"></div><div class="sc-tag">Gourmandise</div></div><div class="sc-body"><h3>Crêpes, Gaufres & Pancakes</h3><p>Crêpes salées & sucrées, gaufres, pancakes</p><div class="sc-foot"><span class="sc-badge">LA FALAISE</span><button class="sc-btn" onclick="openTab('crepes')">Voir le menu</button></div></div></div>
+      <div class="sc-card"><div class="sc-img"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&q=80" alt="Cafés"/><div class="sc-overlay"></div><div class="sc-tag">Boissons chaudes</div></div><div class="sc-body"><h3>Cafés, Thés & Chocolats</h3><p>Expressos, lattes pistache, thés & chocolats chauds</p><div class="sc-foot"><span class="sc-badge">LA FALAISE</span><button class="sc-btn" onclick="openTab('cafes')">Voir le menu</button></div></div></div>
+      <div class="sc-card"><div class="sc-img"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600&q=80" alt="Chichas"/><div class="sc-overlay"></div><div class="sc-tag">Lounge</div></div><div class="sc-body"><h3>Froids, Cocktails & Chichas</h3><p>Milkshakes, smoothies, mojitos et chichas parfumées</p><div class="sc-foot"><span class="sc-badge">LA FALAISE</span><button class="sc-btn" onclick="openTab('froids')">Voir le menu</button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="menu-page">
+  <div class="menu-page-inner">
+    <div class="menu-page-header">
+      <div class="section-tag">Menu complet</div>
+      <h2 class="section-title">Notre <em>Carte</em></h2>
+      <div class="title-line"></div>
+      <p style="margin-top:1rem;color:var(--text-light);font-size:.88rem">Tous les prix en dinars tunisiens (TND)</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="openTab('brunch')">🍳 Brunch</button>
+      <button class="tab-btn" onclick="openTab('crepes')">🥞 Crêpes & Gaufres</button>
+      <button class="tab-btn" onclick="openTab('pizzas')">🍕 Pizzas & Tacos</button>
+      <button class="tab-btn" onclick="openTab('plats')">🍝 Plats</button>
+      <button class="tab-btn" onclick="openTab('tapas')">🦐 Tapas & Poissons</button>
+      <button class="tab-btn" onclick="openTab('special')">⭐ Trésor</button>
+      <button class="tab-btn" onclick="openTab('cafes')">☕ Cafés & Thés</button>
+      <button class="tab-btn" onclick="openTab('froids')">🧋 Froids & Cocktails</button>
+      <button class="tab-btn" onclick="openTab('jus')">🍊 Jus & Glaces</button>
+      <button class="tab-btn" onclick="openTab('chichas')">💨 Chichas</button>
+    </div>
+
+    <!-- BRUNCH -->
+    <div id="panel-brunch" class="menu-panel active">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍳</span> Formules Petit Déjeuner & Brunch</div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">BAMBINO</div><div class="formula-card-price">13,8</div></div><div class="formula-card-desc">Verre de lait, graindor, pancake mickey, chocolat, surprise</div></div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">VITE FAIT</div><div class="formula-card-price">12,8</div></div><div class="formula-card-desc">Café, viennoiserie, jus frais, Eau 0,5</div></div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">CŒUR DOUX</div><div class="formula-card-price">19,8</div></div><div class="formula-card-desc">Café, viennoiserie, beurre, confiture, chocolat, omelette, mini crêpe salée, assiette de charcuterie, fondant, mini jus</div></div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">FALAISE PARK</div><div class="formula-card-price">29,8</div></div><div class="formula-card-desc">Café, viennoiserie, beurre, confiture, chocolat, ricotte, hrissa, huile, omelette, assiette de charcuterie, brik danouni, ojia, boulette escalope, brochette fromage, mini crêpe salée, pancake, yaourt glacé, mini jus, bsissa, fricasse sucrée, salade de fruits, fondant, barquettes salée</div></div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">BRUNCH</div><div class="formula-card-price">49,8</div></div><div class="formula-card-desc">2 cafés, 2 viennoiseries, beurre, confiture, chocolat, hrissa, huile, omelette, assiette de charcuterie, 2 brochettes mixte, boulette escalope, brochette fromage, 2 barquettes salée, 2 brik danouni, oja, nuggets, 2 mini crêpes salées, pancake, gauffre, 2 fricasses sucrées, 2 fondants, 2 yaourts glacés, 2 mini jus, 2 bsissa, salade des fruits, 2 fricassées salées</div></div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🥐</span> Viennoiseries & Desserts</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pain au Chocolat</div></div><div class="menu-item-price">3,5</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Croissant</div></div><div class="menu-item-price">3,5</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tiramisu</div></div><div class="menu-item-price">9,9</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cheesecake</div></div><div class="menu-item-price">9,7</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fondant Chocolat</div></div><div class="menu-item-price">12,8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRÊPES -->
+    <div id="panel-crepes" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🥞</span> Les Crêpes</div>
+        <div class="menu-cat-sub">Crêpes Salées</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Jambon Pesto</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Charcutière</div></div><div class="menu-item-price">11,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Thon Fromage</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poulet Pesto</div><div class="menu-item-desc">Poulet, pesto, fromage</div></div><div class="menu-item-price">16,0</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Farcie au Poulet</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tunisienne</div><div class="menu-item-desc">Viande hachée, légume, fromage</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">Chevrette, escalope, fromage</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+        <div class="menu-cat-sub">Crêpes Sucrées</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Banane</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Oreo</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Fruits Secs</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sucrée Bontly</div><div class="menu-item-desc">Nutella, snickers, oreo</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">19,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🧇</span> Gaufres</div>
+        <div class="menu-cat-sub">Gaufres Sucrées</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Oreo</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Fruits Secs</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sucrée Bontly</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Banane</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">19,8</div></div>
+        </div>
+        <div class="menu-cat-sub">Gaufres Salées</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Viande Haché</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Escalope</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">Chevrette, escalope</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🥞</span> Pancakes</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Fruits Secs</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella Banane</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">17,8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIZZAS -->
+    <div id="panel-pizzas" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍕</span> Les Pizzas</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Margherita</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">All Thono</div></div><div class="menu-item-price">17,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pepperoni</div><div class="menu-item-desc">Mozzarella, sauce tomate, pepperoni</div></div><div class="menu-item-price">21,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Regina</div><div class="menu-item-desc">Mozarella, sauce tomate, basilic frais, jambon de dinde, champignon</div></div><div class="menu-item-price">19,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Al Pollo</div><div class="menu-item-desc">Sauce blanche, mozzarella, poulet, oignon, ail, champignon</div></div><div class="menu-item-price">22,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bovina</div><div class="menu-item-desc">Viande hachée, sauce tomate, mozarella, basilic frais, épice mexicaine, poivron, oignon, pepperoni</div></div><div class="menu-item-price">26,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">5 Fromages</div><div class="menu-item-desc">Sauce blanche</div></div><div class="menu-item-price">24,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pêcheur</div><div class="menu-item-desc">Sauce tomate, chevrette, mozarella, fromage blanc, légume, moule</div></div><div class="menu-item-price">29,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ricotta Épinard</div><div class="menu-item-desc">Sauce blanche, mozarella, jambon de dinde, ricotta, épinard, fromage blanc</div></div><div class="menu-item-price">21,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pizza Dessert</div><div class="menu-item-desc">Sucrée</div></div><div class="menu-item-price">22,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🌮</span> Tacos</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Le Fermier Poulet</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mexican</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chevrette Pannée</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">Escalope, viande</div></div><div class="menu-item-price">17,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍔</span> Hamburgers</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mexicane</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Escalope</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">Viande hachée, escalope</div></div><div class="menu-item-price">17,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>📦</span> Box</div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">BOX</div><div class="formula-card-price">52</div></div><div class="formula-card-desc">Chicken Burger, Hamburger Mexicano, Roulé Escalope, Roulé Tortella, 2 Mini Salade, 2 Soda</div></div>
+      </div>
+    </div>
+
+    <!-- PLATS -->
+    <div id="panel-plats" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍳</span> Omelettes</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Jambon Fromage</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Thon Fromage</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">4 Fromages</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">Chevrette, escalope</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🥗</span> Les Salades</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chicken César</div><div class="menu-item-desc">Laitue, escalope pannée, toste grillé, tomate frais, parmesan, sauce césar</div></div><div class="menu-item-price">18,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Exotic</div><div class="menu-item-desc">Escalope, chevrette, ananas</div></div><div class="menu-item-price">22,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Italienne</div><div class="menu-item-desc">Laitue, concombre, jambon, fromage</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pêcheur</div><div class="menu-item-desc">Chevrette, laitue, tomate frais, persil, moule</div></div><div class="menu-item-price">21,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍝</span> Pasta — Spaghetti · Tagliatelle · Penne</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bolognaise</div><div class="menu-item-desc">Sauce tomate, viande hachée, basilic frais, ail, copeaux de parmesan</div></div><div class="menu-item-price">26,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pêcheur</div><div class="menu-item-desc">Sauce tomate, chevrette, moule</div></div><div class="menu-item-price">31,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sephora</div><div class="menu-item-desc">Sauce tomate, émincé de bœuf, champignons</div></div><div class="menu-item-price">33,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Arrabiata</div><div class="menu-item-desc">Sauce tomate, piments de cayenne, olives, poivrons, huile, thon</div></div><div class="menu-item-price">24,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cléopatra</div><div class="menu-item-desc">Sauce à la crème, poulet, champignons</div></div><div class="menu-item-price">28,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poulet Pistou</div><div class="menu-item-desc">Sauce pisto, poulet, pistache, parmesan</div></div><div class="menu-item-price">31,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bébé Rosé</div><div class="menu-item-desc">Sauce rosée à la crème, chevrette, champignons, moule, basilic</div></div><div class="menu-item-price">33,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Hasta La Vista</div><div class="menu-item-desc">Crème de parmesan, pesto de pistache, chevrette, flacons de pistache</div></div><div class="menu-item-price">35,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Victoria Secret</div><div class="menu-item-desc">Sauce à la crème, filet de bœuf, champignon</div></div><div class="menu-item-price">37,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fella Dorade</div></div><div class="menu-item-price">26,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lasagne Pêcheur</div></div><div class="menu-item-price">29,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lasagne Bolognaise</div></div><div class="menu-item-price">26,8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAPAS & POISSONS -->
+    <div id="panel-tapas" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🦐</span> Tapas</div>
+        <div class="menu-items single-col">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mezza</div><div class="menu-item-desc">Calamar doré, brochette chevrette, brochette escalope, brochette kabeb, moule, poisson grillé, cordon bleu</div></div><div class="menu-item-price">58,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">The Cute Boat</div><div class="menu-item-desc">Émincée de bœuf, émincée de escalope, calamar d'ore, 2 brochettes chevrette, légume chinois, riz</div></div><div class="menu-item-price">62,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cana Pêche</div><div class="menu-item-desc">Chevrette pannée, filet de poisson pannée, moule à la crème, calamar doré, chevrette sauce à la crème</div></div><div class="menu-item-price">56,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Surprise Volailles</div><div class="menu-item-desc">Escalope pannée, brochette escalope, émincé de poulet, cordon bleu, nuggets</div></div><div class="menu-item-price">44,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🐟</span> Poissons</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Dorade Farci</div><div class="menu-item-desc">Chevrette, moule</div></div><div class="menu-item-price">34,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chevrette Sauté à la Crème</div></div><div class="menu-item-price">31,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poisson Grillé</div></div><div class="menu-item-price">26,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Filet de Poisson Sauce Fromage</div></div><div class="menu-item-price">29,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Moule à la Crème et Fritte</div></div><div class="menu-item-price">25,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍗</span> Plats Volailles</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poulet Farci aux Chevrettes</div><div class="menu-item-desc">Sauce alfredo</div></div><div class="menu-item-price">34,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Brochettes de Poulets</div></div><div class="menu-item-price">24,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poulet Panné</div></div><div class="menu-item-price">26,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poulet aux Chips</div></div><div class="menu-item-price">28,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Escalope Grillée</div></div><div class="menu-item-price">29,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poulet à la Toscane</div><div class="menu-item-desc">Suprême de poulet, sauce blanche, épinard, ricotte, noix</div></div><div class="menu-item-price">28,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Suprême de Poulet</div><div class="menu-item-desc">Champignon, sauce crème</div></div><div class="menu-item-price">27,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cordon Bleu</div></div><div class="menu-item-price">29,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Poulet à l'Italienne</div><div class="menu-item-desc">Sauce rosée piquante</div></div><div class="menu-item-price">27,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🥩</span> Plats Viandes</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Côte à l'Os Pannée</div></div><div class="menu-item-price">46,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Côte à l'Os Grillée</div><div class="menu-item-desc">Sauce bleu</div></div><div class="menu-item-price">43,8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRÉSOR -->
+    <div id="panel-special" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>⭐</span> Trésor La Falaise</div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">Family Time</div><div class="formula-card-price">124,8</div></div><div class="formula-card-desc">Calamar d'ore, moule à la crème, dorade grillé, filet de poisson, chevrette pannée, 2 brochettes escalope, 2 brochettes kabeb, 2 brochettes merguez, nuggets, cordon bleu, gratin chevrette, gratin escalope, patte putanesca, garniture de jour</div></div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">Kids</div><div class="formula-card-price">22,8</div></div><div class="formula-card-desc">Escalope pannée, 2 brik danouni, nuggets, soda</div></div>
+        <div class="formula-card"><div class="formula-card-header"><div class="formula-card-name">Paella 2 Pax</div><div class="formula-card-price">69,8</div></div><div class="formula-card-desc">Paella généreuse pour 2 personnes</div></div>
+      </div>
+      <p style="text-align:center;font-family:'Playfair Display',serif;font-style:italic;color:var(--text-mid);margin-top:2rem;font-size:1.1rem">"De Notre Cuisine à votre table, avec beaucoup d'amour"</p>
+    </div>
+
+    <!-- CAFÉS & THÉS -->
+    <div id="panel-cafes" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>☕</span> Les Cafés</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Express</div></div><div class="menu-item-price">3,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cappuccin</div></div><div class="menu-item-price">4,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Café Crème</div></div><div class="menu-item-price">4,5</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Americain</div></div><div class="menu-item-price">4,5</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chocolat au Lait</div></div><div class="menu-item-price">4,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cappuccino</div></div><div class="menu-item-price">6,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Café Aromatisé</div></div><div class="menu-item-price">7,4</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Café Nutella</div></div><div class="menu-item-price">8,4</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cappuccino Noisette Spéculoos</div></div><div class="menu-item-price">8,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ice Latte Aromatisé</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Café Turk</div></div><div class="menu-item-price">8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Café Pistachio</div></div><div class="menu-item-price">17,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ice Pistachio Latte</div></div><div class="menu-item-price">18,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Moka Latte</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Zibra Latte</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Zibra Ice Latte</div></div><div class="menu-item-price">17,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Spanishe Latte</div></div><div class="menu-item-price">13,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍵</span> Les Thés</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Thé à la Menthe</div></div><div class="menu-item-price">4,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Thé Infusion Verveine</div></div><div class="menu-item-price">4,4</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Thé aux Amandes</div></div><div class="menu-item-price">4,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Thé aux Pignons</div></div><div class="menu-item-price">7,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Thé Falaise Park</div></div><div class="menu-item-price">8,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">The Falaise Park Spécial</div></div><div class="menu-item-price">16,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍫</span> Les Chocolats</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chocolat Nature</div><div class="menu-item-desc">Chaud ou glacé</div></div><div class="menu-item-price">9,4</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chantilly</div></div><div class="menu-item-price">10,4</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Oreo</div></div><div class="menu-item-price">12,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Banane Oreo</div></div><div class="menu-item-price">14</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fruits Secs</div></div><div class="menu-item-price">14</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chocolat Falaise Park</div></div><div class="menu-item-price">14,2</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>💧</span> Les Boissons</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Eau 0,5L</div></div><div class="menu-item-price">1,7</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Eau 1L</div></div><div class="menu-item-price">3,6</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Gazifille</div></div><div class="menu-item-price">3,5</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Soda</div></div><div class="menu-item-price">4,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Delio</div></div><div class="menu-item-price">3,9</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Boisson Énergétique</div></div><div class="menu-item-price">8,4</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FROIDS & COCKTAILS -->
+    <div id="panel-froids" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🥤</span> Milkshakes</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Vanille / Chocolat / Pistache / Fraise</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Oreo Nutella</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Caramel Cookies</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cookies Nutella</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fondant Nutella</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🌿</span> Mojitos</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Virgin Mojito</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mojito Pomme</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mojito Exotic</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Mojito Fruits Rouge</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Énergétique</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🧃</span> Jus Glacé</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Green Blue Soda</div><div class="menu-item-desc">Sirop menthe, citron, boga, sirop curaçao bleu</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Blue Ready Soda</div><div class="menu-item-desc">Citron boga, sirop fraise, sirop curaçao bleu</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Orange Honey Blue</div><div class="menu-item-desc">Orange, miel, boga, sirop curaçao bleu</div></div><div class="menu-item-price">14,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>☕</span> Frappuccino</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Caramel Cookies</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Oreo</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Snickers</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fondant Nutella</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cookise Nutella</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">Degla, fruits secs, nutella</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍹</span> Les Smoothies</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pina Colada</div><div class="menu-item-desc">Ananas, noix de coco</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Cosmos</div><div class="menu-item-desc">Blueberry, citron</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Exotic</div><div class="menu-item-desc">Fruit de passion, kiwi</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Read Castle</div><div class="menu-item-desc">Grenade</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Amazone Frech</div><div class="menu-item-desc">Kiwi, pomme, menthe, sirop mojito</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Copacabana</div><div class="menu-item-desc">Banane, ananas, orange</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">Fruits de saison</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍸</span> Les Cocktails</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Paradise</div><div class="menu-item-desc">Kiwi, banane, ananas, boule de glace</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Energetic</div><div class="menu-item-desc">Dattes, banane, fruits secs, miel</div></div><div class="menu-item-price">16,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUS & GLACES -->
+    <div id="panel-jus" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍊</span> Les Jus Frais</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Jus d'Orange</div></div><div class="menu-item-price">8,6</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Lait de Poule</div></div><div class="menu-item-price">9,6</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Citronnade</div></div><div class="menu-item-price">8,6</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Citronnade aux Amandes</div></div><div class="menu-item-price">9,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fraise</div></div><div class="menu-item-price">8,6</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">16,2</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍦</span> Yaourt Glacé</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nature</div></div><div class="menu-item-price">11,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nutella</div></div><div class="menu-item-price">12,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Snickers</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fondant Nutella</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Oreo</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fruits</div><div class="menu-item-desc">Fraise, banane, kiwi, ananas</div></div><div class="menu-item-price">14,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div></div><div class="menu-item-price">17,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🧁</span> Jwajem — Falaise Park</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Jwajem Falaise Park</div></div><div class="menu-item-price">16,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>🍨</span> Les Glaces</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bambino</div><div class="menu-item-desc">2 boules de glaces</div></div><div class="menu-item-price">6,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sorbet</div><div class="menu-item-desc">3 boules de citron</div></div><div class="menu-item-price">7,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Banana Split</div></div><div class="menu-item-price">15,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park</div><div class="menu-item-desc">5 boules de glaces avec garniture</div></div><div class="menu-item-price">18,8</div></div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>➕</span> Les Suppléments</div>
+        <div class="menu-items">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Verre de Lait</div></div><div class="menu-item-price">2,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Boule de Glace</div></div><div class="menu-item-price">2,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Dose Menthe</div></div><div class="menu-item-price">2,6</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chantilly</div></div><div class="menu-item-price">5,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Amande</div></div><div class="menu-item-price">6,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Pignons</div></div><div class="menu-item-price">7,2</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Dose Arôme</div></div><div class="menu-item-price">6,6</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Paque Emporté</div></div><div class="menu-item-price">1,0</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHICHAS -->
+    <div id="panel-chichas" class="menu-panel">
+      <div class="menu-cat">
+        <div class="menu-cat-title"><span>💨</span> Les Chichas</div>
+        <div class="menu-items single-col">
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chicha Parfumée Aluminium</div><div class="menu-item-desc">Fraisin · Menthe · Pomme</div></div><div class="menu-item-price">11,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chicha Parfumée Kaloute</div><div class="menu-item-desc">Fraisin · Menthe · Pomme</div></div><div class="menu-item-price">13,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Chicha Parfumée Quasar</div><div class="menu-item-desc">Fraisin · Menthe · Pomme</div></div><div class="menu-item-price">33,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park Kaloute</div><div class="menu-item-desc">Fixe ou chikh many · Salade de fruits · Thé</div></div><div class="menu-item-price">22,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Falaise Park Quasar</div><div class="menu-item-desc">Fixe ou chikh many · Salade de fruits · Thé</div></div><div class="menu-item-price">43,8</div></div>
+          <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Dose Glaçon</div></div><div class="menu-item-price">6</div></div>
+        </div>
+      </div>
+      <div style="background:var(--green-pale);border-radius:10px;padding:1.4rem 1.75rem;margin-top:1.5rem;border-left:4px solid var(--green)">
+        <p style="font-size:.85rem;color:var(--text-mid);line-height:1.75"><strong>Chers clients,</strong><br>Pour votre confort, le règlement s'effectue uniquement sur présentation de l'addition. Merci de votre aimable compréhension.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="video" class="video-section">
+  <div class="section-tag">Découvrez-nous</div>
+  <h2 class="section-title">Vidéo de <em style="color:var(--gold)">Présentation</em></h2>
+  <div class="title-line"></div>
+  <div class="video-wrapper">
+    <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/jPdlvWXdgx8?si=drWopOhouK7k1sdr" title="YouTube video player" 
+    frameborder="0" allow="accelerometer; 
+    clipboard-write; 
+    encrypted-media; gyroscope; 
+    picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</section>
+
+<div class="social-bar">
+  <a href="https://www.facebook.com/lafalaisecafe?locale=fr_FR" class="social-chip"><svg viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
+  <a href="https://www.instagram.com/cafelafalaise/" class="social-chip"><svg viewBox="0 0 24 24" fill="#e1306c"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 10.838a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>Instagram</a>
+  <a href="https://www.youtube.com/watch?v=jPdlvWXdgx8" class="social-chip"><svg viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube</a>
+</div>
+
+<footer>
+  <div class="footer-logo">LA FALAISE</div>
+  <div class="footer-sub">LA FALAISE MONASTIR — MONASTIR</div>
+  <div class="footer-line"></div>
+  <p>© 2026 Café La Falaise. Tous droits réservés. </p>
+</footer>
+
+<script>
+function openTab(id){
+  document.querySelectorAll('.menu-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id);
+  if(panel)panel.classList.add('active');
+  const map={brunch:0,crepes:1,pizzas:2,plats:3,tapas:4,special:5,cafes:6,froids:7,jus:8,chichas:9};
+  const tabs=document.querySelectorAll('.tab-btn');
+  if(map[id]!==undefined&&tabs[map[id]])tabs[map[id]].classList.add('active');
+  document.getElementById('menu').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
